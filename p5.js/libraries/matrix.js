@@ -82,13 +82,42 @@ class Matrix {
         }
     }
 
+    static subtract(a, b) {
+        // Return a new Matrix a-b
+        let result = new Matrix(a.rows, a.cols);
+        for (let i = 0; i < result.rows; i++) {
+            for (let j = 0; j < result.cols; j++) {
+                result.data[i][j] = a.data[i][j] - b.data[i][j];
+            }
+        }
+        return result;
+    }
+
     randomize() {
         for (let i = 0; i < this.rows; i++) {
             for (let j = 0; j < this.cols; j++) {
-                this.data[i][j] = Math.floor(Math.random() * 10);
+                this.data[i][j] = Math.random()*2-1;
             }
         }
     }
+    static fromArray(arr) {
+        let m = new Matrix(arr.length, 1);
+        for (let i = 0; i < arr.length; i++) {
+            m.data[i][0] = arr[i];
+        }
+        return m;
+    }
+
+    toArray() {
+        let arr = [];
+        for (let i = 0; i < this.rows; i++) {
+            for (let j = 0; j < this.cols; j++) {
+                arr.push(this.data[i][j]);
+            }
+        }
+        return arr;
+    }
+
     print() {
         console.table(this.data);
     }
